@@ -36,6 +36,23 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 //    removes all values in the array which occur exactly the specified number of times.
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new Integer[0];
+        StringBuilder noDupes = new StringBuilder();
+//        counting number of occurrences
+        for (int i = 0; i < array.length; i++) {
+            int count = 0;
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] == array[j])
+                    count++;
+            }
+//            if count not equal to int number of times occurs
+            if (!(count == exactNumberOfDuplications)) {
+                noDupes.append(array[i]);
+            }
+        }
+        Integer[] removed = new Integer[noDupes.length()];
+        for (int i = 0; i < noDupes.length(); i++) {
+            removed[i] = Integer.parseInt("" + noDupes.charAt(i));
+        }
+        return removed;
     }
 }
